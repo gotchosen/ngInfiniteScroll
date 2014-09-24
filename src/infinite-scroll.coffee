@@ -13,8 +13,8 @@ mod.directive 'infiniteScroll', ['$rootScope', '$window', '$timeout', 'THROTTLE_
 
   link: (scope, elem, attrs) ->
     windowElement = angular.element($window)
-
-    ngIs = this;
+    
+    ngIs = this
     scrollDistance = null
     ngIs.scrollEnabled = null
     checkWhenEnabled = null
