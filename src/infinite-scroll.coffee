@@ -14,8 +14,9 @@ mod.directive 'infiniteScroll', ['$rootScope', '$window', '$timeout', 'THROTTLE_
   link: (scope, elem, attrs) ->
     windowElement = angular.element($window)
 
+    ngIs = this;
     scrollDistance = null
-    scrollEnabled = null
+    ngIs.scrollEnabled = null
     checkWhenEnabled = null
     container = null
     immediateCheck = true
@@ -63,7 +64,7 @@ mod.directive 'infiniteScroll', ['$rootScope', '$window', '$timeout', 'THROTTLE_
       if shouldScroll
         checkWhenEnabled = true
 
-        if scrollEnabled
+        if ngIs.scrollEnabled
           if scope.$$phase || $rootScope.$$phase
             scope.infiniteScroll()
           else
@@ -123,8 +124,8 @@ mod.directive 'infiniteScroll', ['$rootScope', '$window', '$timeout', 'THROTTLE_
     # once it switches back to false the infinite scroll function
     # will be triggered again.
     handleInfiniteScrollDisabled = (v) ->
-      scrollEnabled = !v
-      if scrollEnabled && checkWhenEnabled
+      ngIs.scrollEnabled = !v
+      if ngIs.scrollEnabled && checkWhenEnabled
         checkWhenEnabled = false
         handler()
 
